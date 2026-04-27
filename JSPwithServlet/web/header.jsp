@@ -9,7 +9,9 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Optional Custom Style -->
+    <!-- Bootstrap Icons (optional but better UI) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <style>
         body {
             background-color: #f8f9fa;
@@ -19,6 +21,10 @@
             font-weight: bold;
             letter-spacing: 1px;
         }
+
+        .nav-link:hover {
+            color: #0d6efd !important;
+        }
     </style>
 </head>
 
@@ -26,10 +32,11 @@
 
 <!-- NAVBAR -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
     <div class="container">
 
         <a class="navbar-brand" href="EmployeeServlet">
-            👨‍💼 EmployeeMS
+            <i class="bi bi-person-badge"></i> EmployeeMS
         </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -56,5 +63,7 @@
             </ul>
 
         </div>
+
     </div>
+
 </nav>

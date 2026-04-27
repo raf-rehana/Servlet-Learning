@@ -9,49 +9,59 @@ import util.DbUtil;
 public class EmployeeDao {
 
     public static int saveEmp(Employee e) {
+
         int status = 0;
-        String sql = "insert into emp(name, salary) values(?,?)";
+        String sql = "INSERT INTO employee(name, joindate, designation, salary) VALUES (?,?,?,?)";
 
         try (Connection con = DbUtil.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, e.getName());
-            ps.setDouble(2, e.getSalary());   // ✅ FIX
+            ps.setDate(2, e.getJoindate());
+            ps.setString(3, e.getDesignation());
+            ps.setDouble(4, e.getSalary());
 
             status = ps.executeUpdate();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
         return status;
     }
 
-    public static List<Employee> getAllEmp() {
-        List<Employee> emps = new ArrayList<>();
-        String sql = "select * from emp";
+   public static List<Employee> getAllEmp() {
 
-        try (Connection con = DbUtil.getCon();
-             PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+    List<Employee> list = new ArrayList<>();
+    String sql = "SELECT * FROM employee";
 
-            while (rs.next()) {
-                Employee e = new Employee(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getDouble("salary")   // ✅ FIX
-                );
-                emps.add(e);
-            }
+    try (Connection con = DbUtil.getCon();
+         PreparedStatement ps = con.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        while (rs.next()) {
+
+            Employee e = new Employee();
+
+            e.setId(rs.getInt("id"));
+            e.setName(rs.getString("name"));
+            e.setJoindate(rs.getDate("joindate"));
+            e.setDesignation(rs.getString("designation"));
+            e.setSalary(rs.getDouble("salary"));
+
+            list.add(e);
         }
 
-        return emps;
+    } catch (SQLException ex) {
+        ex.printStackTrace();
     }
 
+    return list;
+}
+
     public static void deleteEmp(int id) {
-        String sql = "delete from emp where id=?";
+
+        String sql = "DELETE FROM employee WHERE id=?";
 
         try (Connection con = DbUtil.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -65,21 +75,26 @@ public class EmployeeDao {
     }
 
     public static Employee getById(int id) {
+
         Employee e = null;
-        String sql = "select * from emp where id=?";
+        String sql = "SELECT * FROM employee WHERE id=?";
 
         try (Connection con = DbUtil.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                e = new Employee(
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getDouble("salary")   // ✅ FIX
-                );
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+                    e = new Employee(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getDate("joindate"),
+                            rs.getString("designation"),
+                            rs.getDouble("salary")
+                    );
+                }
             }
 
         } catch (SQLException ex) {
@@ -90,21 +105,25 @@ public class EmployeeDao {
     }
 
     public static int updateEmp(Employee e) {
+
         int status = 0;
-        String sql = "update emp set name=?, salary=? where id=?";
+        String sql = "UPDATE employee SET name=?, joindate=?, designation=?, salary=? WHERE id=?";
 
         try (Connection con = DbUtil.getCon();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
             ps.setString(1, e.getName());
-            ps.setDouble(2, e.getSalary());   // ✅ FIX
-            ps.setInt(3, e.getId());
+            ps.setDate(2, e.getJoindate());
+            ps.setString(3, e.getDesignation());
+            ps.setDouble(4, e.getSalary());
+            ps.setInt(5, e.getId());
 
             status = ps.executeUpdate();
 
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
         return status;
     }
 }

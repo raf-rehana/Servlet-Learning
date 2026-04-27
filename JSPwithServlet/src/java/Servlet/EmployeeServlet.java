@@ -3,6 +3,7 @@ package Servlet;
 import dao.EmployeeDao;
 import entity.Employee;
 import java.io.IOException;
+import java.sql.Date;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
@@ -20,7 +21,7 @@ public class EmployeeServlet extends HttpServlet {
 
             int id = Integer.parseInt(request.getParameter("id"));
             EmployeeDao.deleteEmp(id);
-            response.sendRedirect("allemp.jsp");
+            response.sendRedirect("EmployeeServlet");
 
         } else if ("edit".equals(action)) {
 
@@ -30,9 +31,12 @@ public class EmployeeServlet extends HttpServlet {
             request.setAttribute("emp", e);
             request.getRequestDispatcher("editemp.jsp").forward(request, response);
 
+        } else if ("addForm".equals(action)) {
+
+            request.getRequestDispatcher("addemp.jsp").forward(request, response);
+
         } else {
 
-            // default: show all
             request.setAttribute("list", EmployeeDao.getAllEmp());
             request.getRequestDispatcher("allemp.jsp").forward(request, response);
         }
@@ -47,26 +51,32 @@ public class EmployeeServlet extends HttpServlet {
         if ("add".equals(action)) {
 
             Employee emp = new Employee();
+
             emp.setName(request.getParameter("name"));
-            emp.setSalary(Float.parseFloat(request.getParameter("salary")));
+
+            emp.setJoindate(Date.valueOf(request.getParameter("joindate")));
+
+            emp.setDesignation(request.getParameter("designation"));
+
+            emp.setSalary(Double.parseDouble(request.getParameter("salary")));
 
             EmployeeDao.saveEmp(emp);
+
             response.sendRedirect("EmployeeServlet");
 
         } else if ("update".equals(action)) {
 
             Employee emp = new Employee();
+
             emp.setId(Integer.parseInt(request.getParameter("id")));
             emp.setName(request.getParameter("name"));
-            emp.setSalary(Float.parseFloat(request.getParameter("salary")));
+            emp.setJoindate(Date.valueOf(request.getParameter("joindate")));
+            emp.setDesignation(request.getParameter("designation"));
+            emp.setSalary(Double.parseDouble(request.getParameter("salary")));
 
             EmployeeDao.updateEmp(emp);
+
             response.sendRedirect("EmployeeServlet");
         }
-    }
-
-    @Override
-    public String getServletInfo() {
-        return "Employee Servlet";
     }
 }

@@ -1,12 +1,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<footer class="bg-dark text-white mt-5 pt-4">
 
-<!-- FOOTER -->
-<footer class="bg-dark text-white text-center text-lg-start mt-5">
-
-    <div class="container p-4">
+    <div class="container">
 
         <div class="row">
 
@@ -23,7 +19,7 @@
             <div class="col-lg-3 col-md-6 mb-4">
                 <h5 class="text-uppercase">Quick Links</h5>
 
-                <ul class="list-unstyled mb-0">
+                <ul class="list-unstyled">
                     <li><a href="EmployeeServlet" class="text-white text-decoration-none">Home</a></li>
                     <li><a href="addemp.jsp" class="text-white text-decoration-none">Add Employee</a></li>
                 </ul>
@@ -41,11 +37,14 @@
 
     </div>
 
-    <div class="text-center p-3 bg-secondary">
+    <div class="text-center py-3 bg-secondary mt-3">
         © 2026 EmployeeMS | Built with ❤️ using Java JSP
     </div>
 
 </footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

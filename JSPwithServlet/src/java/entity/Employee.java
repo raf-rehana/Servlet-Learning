@@ -1,22 +1,30 @@
 package entity;
 
+import java.sql.Date;
+
 public class Employee {
 
     private int id;
     private String name;
+    private Date joindate;
+    private String designation;
     private double salary;
 
     public Employee() {
     }
 
-    public Employee(int id, String name, double salary) {
+    public Employee(int id, String name, Date joindate, String designation, double salary) {
         this.id = id;
         this.name = name;
+        this.joindate = joindate;
+        this.designation = designation;
         this.salary = salary;
     }
 
-    public Employee(String name, double salary) {
+    public Employee(String name, Date joindate, String designation, double salary) {
         this.name = name;
+        this.joindate = joindate;
+        this.designation = designation;
         this.salary = salary;
     }
 
@@ -36,6 +44,22 @@ public class Employee {
         this.name = name;
     }
 
+    public Date getJoindate() {
+        return joindate;
+    }
+
+    public void setJoindate(Date joindate) {
+        this.joindate = joindate;
+    }
+
+    public String getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.designation = designation;
+    }
+
     public double getSalary() {
         return salary;
     }
@@ -46,6 +70,10 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+        return "Employee [id=" + id +
+                ", name=" + name +
+                ", joindate=" + joindate +
+                ", designation=" + designation +
+                ", salary=" + salary + "]";
     }
 }
