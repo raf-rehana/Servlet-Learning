@@ -5,28 +5,29 @@
 <%@page import="dao.StudentDao" %>
 <%@page import="entity.Student" %>
 <%@page import="java.util.*" %>
-<% 
+
+<%
     List<Student> list = StudentDao.getAllStudents();
     request.setAttribute("list", list);
 %>
+
 <h1 class="text-primary text-center">All Students</h1>
 
 <div class="d-flex justify-content-end align-items-center mb-3">
-
     <a href="StudentServlet?action=addForm" class="btn btn-success">
         + Add Student
     </a>
-
 </div>
 
 <table class="table table-bordered table-hover">
 
     <thead class="table-dark">
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Class</th>
             <th>Roll</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Marks</th>
+            <th>Department</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -37,7 +38,7 @@
 
             <c:when test="${empty list}">
                 <tr>
-                    <td colspan="5" class="text-center text-danger">
+                    <td colspan="6" class="text-center text-danger">
                         No Students Found
                     </td>
                 </tr>
@@ -49,8 +50,9 @@
                     <tr>
                         <td>${s.id}</td>
                         <td>${s.name}</td>
-                        <td>${s.studentClass}</td>
-                        <td>${s.roll}</td>
+                        <td>${s.subject}</td>
+                        <td>${s.marks}</td>
+                        <td>${s.department}</td>
 
                         <td>
                             <a href="StudentServlet?action=edit&id=${s.id}" 

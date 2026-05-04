@@ -1,26 +1,29 @@
-
 package entity;
 
 public class Student {
+
     private int id;
     private String name;
-    private String studentClass;
-    private String roll;
+    private String subject;
+    private String marks;
+    private String department;
 
     public Student() {
     }
 
-    public Student(String name, String studentClass, String roll) {
-        this.name = name;
-        this.studentClass = studentClass;
-        this.roll = roll;
-    }
-
-    public Student(int id, String name, String studentClass, String roll) {
+    public Student(int id, String name, String subject, String marks, String department) {
         this.id = id;
         this.name = name;
-        this.studentClass = studentClass;
-        this.roll = roll;
+        this.subject = subject;
+        this.marks = marks;
+        this.department = department;
+    }
+
+    public Student(String name, String subject, String marks, String department) {
+        this.name = name;
+        this.subject = subject;
+        this.marks = marks;
+        this.department = department;
     }
 
     public int getId() {
@@ -39,22 +42,29 @@ public class Student {
         this.name = name;
     }
 
-    public String getStudentClass() {
-        return studentClass;
+    public String getSubject() {
+        return subject;
     }
 
-    public void setStudentClass(String studentClass) {
-        this.studentClass = studentClass;
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
-    public String getRoll() {
-        return roll;
+    public String getMarks() {
+        return marks;
     }
 
-    public void setRoll(String roll) {
-        this.roll = roll;
+    public void setMarks(String marks) {
+        this.marks = marks;
     }
-    
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
     
     
 
