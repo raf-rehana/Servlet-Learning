@@ -12,7 +12,7 @@
 
 <body>
 
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark bg-secondary">
     <div class="container-fluid">
         <a class="navbar-brand" href="StudentServlet">
             Student Management System

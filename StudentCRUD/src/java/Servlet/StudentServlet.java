@@ -39,7 +39,7 @@ public class StudentServlet extends HttpServlet {
         } else {
 
             request.setAttribute("list", StudentDao.getAllStudents());
-            request.getRequestDispatcher("all.jsp").forward(request, response);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 

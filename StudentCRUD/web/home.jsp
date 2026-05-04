@@ -19,9 +19,9 @@
     </a>
 </div>
 
-<table class="table table-bordered table-hover">
+<table class="table table-bordered">
 
-    <thead class="table-dark">
+    <thead class="table-secondary">
         <tr>
             <th>Roll</th>
             <th>Name</th>
