@@ -9,9 +9,9 @@
     List<Employee> list = EmployeeDao.getAllEmployees();
     request.setAttribute("list", list);
 %>
-<h1 class="text-primary">All Employees</h1>
+<h1 class="text-primary text-center">All Employees</h1>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-end align-items-center mb-3">
 
     <a href="EmployeeServlet?action=addForm" class="btn btn-success">
         + Add Employee

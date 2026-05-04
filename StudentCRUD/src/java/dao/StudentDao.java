@@ -25,8 +25,9 @@ public class StudentDao {
                 Student s = new Student();
                 s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
-                s.setStudentClass(rs.getString("studentClass"));
-                s.setRoll(rs.getString("roll"));
+                s.setSubject(rs.getString("subject"));
+                s.setMarks(rs.getString("marks"));
+                s.setDepartment(rs.getString("department"));
                 list.add(s);
             }
 
@@ -53,8 +54,9 @@ public class StudentDao {
                 s = new Student();
                 s.setId(rs.getInt("id"));
                 s.setName(rs.getString("name"));
-                s.setStudentClass(rs.getString("studentClass"));
-                s.setRoll(rs.getString("roll"));
+                s.setSubject(rs.getString("subject"));
+                s.setMarks(rs.getString("marks"));
+                s.setDepartment(rs.getString("department"));
             }
 
         } catch (Exception e) {
@@ -69,41 +71,40 @@ public class StudentDao {
         try (Connection con = DbUtil.getConnection()) {
 
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO student(name, studentClass, roll) VALUES (?, ?, ?)"
+                    "INSERT INTO student(name, subject, marks, department) VALUES (?, ?, ?, ?)"
             );
 
             ps.setString(1, s.getName());
-            ps.setString(2, s.getStudentClass());
-            ps.setString(3, s.getRoll());
+            ps.setString(2, s.getSubject());
+            ps.setString(3, s.getMarks());
+            ps.setString(4, s.getDepartment());
 
             ps.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-  }
+    }
 
     public static void update(Student s) {
 
         try (Connection con = DbUtil.getConnection()) {
 
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE student SET name=?, studentClass=?, roll=? WHERE id=?"
+                    "UPDATE student SET name=?, subject=?, marks=?, department=? WHERE id=?"
             );
 
             ps.setString(1, s.getName());
-            ps.setString(2, s.getStudentClass());
-            ps.setString(3, s.getRoll());
-            ps.setInt(4, s.getId());
+            ps.setString(2, s.getSubject());
+            ps.setString(3, s.getMarks());
+            ps.setString(4, s.getDepartment());
+            ps.setInt(5, s.getId());
 
             ps.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 
     public static void delete(int id) {
@@ -115,13 +116,10 @@ public class StudentDao {
             );
 
             ps.setInt(1, id);
-
             ps.executeUpdate();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
 }

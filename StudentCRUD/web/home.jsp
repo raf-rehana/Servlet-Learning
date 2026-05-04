@@ -9,9 +9,9 @@
     List<Student> list = StudentDao.getAllStudents();
     request.setAttribute("list", list);
 %>
-<h1 class="text-primary">All Students</h1>
+<h1 class="text-primary text-center">All Students</h1>
 
-<div class="d-flex justify-content-between align-items-center mb-3">
+<div class="d-flex justify-content-end align-items-center mb-3">
 
     <a href="StudentServlet?action=addForm" class="btn btn-success">
         + Add Student

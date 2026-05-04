@@ -1,11 +1,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="header.jsp" %>
+
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Add Student</title>
 
-    <!-- Bootstrap (optional) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -23,13 +23,18 @@
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Class</label>
-            <input type="text" name="studentClass" class="form-control" required>
+            <label class="form-label">Subject</label>
+            <input type="text" name="subject" class="form-control" required>
         </div>
 
         <div class="mb-3">
-            <label class="form-label">Roll</label>
-            <input type="text" name="roll" class="form-control" required>
+            <label class="form-label">Marks</label>
+            <input type="text" name="marks" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Department</label>
+            <input type="text" name="department" class="form-control" required>
         </div>
 
         <button type="submit" class="btn btn-success">Save</button>
@@ -40,4 +45,5 @@
 
 </body>
 </html>
+
 <%@include file="footer.jsp" %>

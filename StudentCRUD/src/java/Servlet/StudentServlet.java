@@ -1,4 +1,3 @@
-
 package Servlet;
 
 import dao.StudentDao;
@@ -9,15 +8,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-    @WebServlet(name = "StudentServlet", urlPatterns = {"/StudentServlet"})
+@WebServlet(name = "StudentServlet", urlPatterns = {"/StudentServlet"})
 public class StudentServlet extends HttpServlet {
-
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         String action = request.getParameter("action");
 
         if ("delete".equals(action)) {
@@ -29,9 +27,9 @@ public class StudentServlet extends HttpServlet {
         } else if ("edit".equals(action)) {
 
             int id = Integer.parseInt(request.getParameter("id"));
-            Student e = StudentDao.getStudentById(id);
+            Student s = StudentDao.getStudentById(id);
 
-            request.setAttribute("s", e);
+            request.setAttribute("s", s);
             request.getRequestDispatcher("edit.jsp").forward(request, response);
 
         } else if ("addForm".equals(action)) {
@@ -43,24 +41,22 @@ public class StudentServlet extends HttpServlet {
             request.setAttribute("list", StudentDao.getAllStudents());
             request.getRequestDispatcher("all.jsp").forward(request, response);
         }
-  
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-         String action = request.getParameter("action");
+
+        String action = request.getParameter("action");
 
         if ("add".equals(action)) {
 
             Student s = new Student();
 
             s.setName(request.getParameter("name"));
-
-            s.setStudentClass(request.getParameter("studentClass"));
-
-            s.setRoll(request.getParameter("roll"));
+            s.setSubject(request.getParameter("subject"));
+            s.setMarks(request.getParameter("marks"));
+            s.setDepartment(request.getParameter("department"));
 
             StudentDao.save(s);
 
@@ -72,9 +68,9 @@ public class StudentServlet extends HttpServlet {
 
             s.setId(Integer.parseInt(request.getParameter("id")));
             s.setName(request.getParameter("name"));
-
-            s.setStudentClass(request.getParameter("studentClass"));
-            s.setRoll(request.getParameter("roll"));
+            s.setSubject(request.getParameter("subject"));
+            s.setMarks(request.getParameter("marks"));
+            s.setDepartment(request.getParameter("department"));
 
             StudentDao.update(s);
 
@@ -82,11 +78,8 @@ public class StudentServlet extends HttpServlet {
         }
     }
 
-
-  
     @Override
     public String getServletInfo() {
         return "Short description";
     }
-
 }

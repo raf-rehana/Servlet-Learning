@@ -5,9 +5,9 @@
     <h2 class="text-primary">Add Employee</h2>
 
     <!-- Error Message -->
-    <c:if test="${not empty error}">
+<!--    <c:if test="${not empty error}">
         <div class="alert alert-danger">${error}</div>
-    </c:if>
+    </c:if>-->
 
     <form action="EmployeeServlet" method="post">
 
